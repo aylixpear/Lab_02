@@ -1,7 +1,7 @@
 // Lab_4_6.cpp
 // Грушка Олександр
 // Лабораторна робота № 4.6
-// Вкладені цикли (Варіант 6)
+// Вкладені цикли (Варіант 5)
 
 #include <iostream>
 #include <cmath>
@@ -10,23 +10,56 @@
 using namespace std;
 
 int main() {
-    double P = 1.0; // Початкове значення для добутку
+    double P, S;
+    int i, k;
 
-    // Зовнішній цикл для k від 1 до 15
-    for (int k = 1; k <= 15; k++) {
-        double S = 0.0; // Початкове значення для внутрішньої суми
-
-        // Внутрішній цикл для i від 1 до k
-        for (int i = 1; i <= k; i++) {
-            S += cos(1.0 * i + k);
+    P = 1.0;
+    i = 1;
+    while (i <= 10) {
+        S = 0.0;
+        k = 1;
+        while (k <= i) {
+            S += 1.0 / k;
+            k++;
         }
-
-        // Обчислення множника: (1 + S)^2
-        P *= pow(1.0 + S, 2);
+        P *= (i + S) / sqrt(S);
+        i++;
     }
+    cout << fixed << setprecision(8) << P << endl;
 
-    cout << fixed << setprecision(8);
-    cout << "P = " << P << endl;
+    P = 1.0;
+    i = 1;
+    do {
+        S = 0.0;
+        k = 1;
+        do {
+            S += 1.0 / k;
+            k++;
+        } while (k <= i);
+        P *= (i + S) / sqrt(S);
+        i++;
+    } while (i <= 10);
+    cout << fixed << setprecision(8) << P << endl;
+
+    P = 1.0;
+    for (i = 1; i <= 10; i++) {
+        S = 0.0;
+        for (k = 1; k <= i; k++) {
+            S += 1.0 / k;
+        }
+        P *= (i + S) / sqrt(S);
+    }
+    cout << fixed << setprecision(8) << P << endl;
+
+    P = 1.0;
+    for (i = 10; i >= 1; i--) {
+        S = 0.0;
+        for (k = i; k >= 1; k--) {
+            S += 1.0 / k;
+        }
+        P *= (i + S) / sqrt(S);
+    }
+    cout << fixed << setprecision(8) << P << endl;
 
     return 0;
 }
